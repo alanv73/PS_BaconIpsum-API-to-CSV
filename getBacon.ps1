@@ -23,10 +23,18 @@ function getBaconSentence($count) {
     return getBacon($url)
 }
 
-function makeBacon($count) {
-    $rashers = @()
+function makeBacon() {
+    do {
+        try {
+            $count = [int](Read-Host "`n`tHow much Bacon (0 to exit)")
+        } catch {
+            Write-Host "`n`tInvalid Entry. Please enter a whole number."
+        }
+    } until ($count -is [int])
 
-    $i = 0
+    if ($count -eq 0) { return $null }
+
+    $rashers = @()
     $options = [System.StringSplitOptions]::RemoveEmptyEntries
     $sentences = (getBaconSentence($count)).Split(".", $options).Trim()
     $paragraphs = getBaconParagraph($count)
@@ -54,11 +62,11 @@ function Menu() {
     Clear-Host
     Write-Host "`n`t===={ Menu }===="    
     Write-Host "`n`t[1] Get Bacon"
-    Write-Host "`t[2] Save Bacon to CSV"
+    Write-Host "`t[2] Save Bacon"
     Write-Host "`n`t[Q] Quit"
 
     switch (Read-Host "`n`tPlease Choose") {
-        1 { $rashers = makeBacon(100) }
+        1 { $rashers = makeBacon }
         2 { saveBacon($rashers) }
         "Q" { exit }
         default { Write-Host "`n`tError: Invalid choice" }
