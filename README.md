@@ -1,4 +1,4 @@
-# Powershell: BaconIpsum API to CSV
+# Powershell: Bacon Ipsum API to CSV
 Downloads <a href="https://baconipsum.com/">BaconIpsum</a> and saves it to a CSV file.
 
 
