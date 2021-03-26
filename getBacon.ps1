@@ -26,11 +26,11 @@ function getBaconSentence($count) {
 function makeBacon() {
     do {
         try {
-            $count = [int](Read-Host "`n`tHow much Bacon (0 to exit)")
+            $count = [int](Read-Host "`n`tHow much Bacon (100 max, 0 to exit)")
         } catch {
             Write-Host "`n`tInvalid Entry. Please enter a whole number."
         }
-    } until ($count -is [int])
+    } while ($count -gt 100)
 
     if ($count -eq 0) { return $null }
 
